@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/layout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/currency_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="name"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.09"
+            android:text="Cena zł:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/curency_zl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.18"
+            android:text="kurs"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.15"
+            android:text="Data:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/currency_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="date"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
