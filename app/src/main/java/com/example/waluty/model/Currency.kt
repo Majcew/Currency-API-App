@@ -2,4 +2,5 @@ package com.example.waluty.model
 import java.io.Serializable
 
 //Do poprawy
-data class Currency(val name:String, val code:String, val price:Double):Serializable
+//poprawione na wartości z api
+data class Currency(val currency:String, val code:String, val mid:Double):Serializable

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waluty.R
 import com.example.waluty.model.Currency
+import com.example.waluty.model.CurrencyResponse
 
 class CurrencyAdapter(private var currency:List<Currency>):RecyclerView.Adapter<CurrencyAdapter.MyViewHolder>() {
 
@@ -21,9 +22,9 @@ class CurrencyAdapter(private var currency:List<Currency>):RecyclerView.Adapter<
 
     override fun onBindViewHolder(parent: MyViewHolder, position: Int) {
         val currency = currency[position]
-        parent.textViewCurrencyZl.text = currency.price.toString()
+        parent.textViewCurrencyZl.text = currency.mid.toString()
         parent.textViewDate.text = currency.code
-        parent.textViewName.text = currency.name
+        parent.textViewName.text = currency.currency
     }
 
     fun update(data:List<Currency>){

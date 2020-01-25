@@ -1,6 +1,8 @@
 package com.example.waluty.view
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -35,11 +37,24 @@ class MainActivity : AppCompatActivity() {
     private  fun setupViewModel(){
         viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository())).get(CurrencyViewModel::class.java)
         viewModel.currency.observe(this,renderCurrencies)
+
+        viewModel.isViewLoading.observe(this,isViewLoadingObserver)
+
     }
 
     private val renderCurrencies= Observer<List<Currency>> {
         adapter.update(it)
     }
+
+    private val isViewLoadingObserver= Observer<Boolean> {
+        val visibility=if(it) View.VISIBLE else View.GONE
+        //progressBar.visibility= visibility
+    }
+
+
+
+
+
     override fun onResume() {
         super.onResume()
         viewModel.loadCurrencies()

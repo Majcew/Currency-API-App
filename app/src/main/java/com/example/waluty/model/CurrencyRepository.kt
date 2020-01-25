@@ -18,7 +18,7 @@ class CurrencyRepository:CurrencyDataSource {
             override fun onResponse(call: Call<CurrencyResponse>, response: Response<CurrencyResponse>) {
                 response?.body()?.let {
                     if(response.isSuccessful){
-                        callback.onSuccess(it.data)
+                        callback.onSuccess(it.rates)
                     }else{
                         callback.onError("Wystąpił błąd")
                     }
