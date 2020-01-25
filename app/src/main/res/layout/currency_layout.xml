@@ -32,11 +32,11 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/shortcut"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.15"
-            android:text="Data:"
+            android:text="shortcut"
             android:textSize="14sp" />
 
     </LinearLayout>

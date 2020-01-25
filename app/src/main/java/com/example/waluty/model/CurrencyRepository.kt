@@ -6,19 +6,19 @@ import retrofit2.Response
 
 class CurrencyRepository:CurrencyDataSource {
 
-    private var call:Call<CurrencyResponse>?=null
+    private var call:Call<List<CurrencyResponse>>?=null
 
     override fun retrieveCurrency(callback: LinkStatus) {
         call=API_object.build().currencies()
-        call?.enqueue(object :Callback<CurrencyResponse>{
-            override fun onFailure(call: Call<CurrencyResponse>, t: Throwable) {
+        call?.enqueue(object :Callback<List<CurrencyResponse>>{
+            override fun onFailure(call: Call<List<CurrencyResponse>>, t: Throwable) {
                 callback.onError(t.message)
             }
 
-            override fun onResponse(call: Call<CurrencyResponse>, response: Response<CurrencyResponse>) {
+            override fun onResponse(call: Call<List<CurrencyResponse>>, response: Response<List<CurrencyResponse>>) {
                 response?.body()?.let {
                     if(response.isSuccessful){
-                        callback.onSuccess(it.rates)
+                        callback.onSuccess(it[0].rates)
                     }else{
                         callback.onError("Wystąpił błąd")
                     }

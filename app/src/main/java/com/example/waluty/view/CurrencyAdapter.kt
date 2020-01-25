@@ -23,7 +23,7 @@ class CurrencyAdapter(private var currency:List<Currency>):RecyclerView.Adapter<
     override fun onBindViewHolder(parent: MyViewHolder, position: Int) {
         val currency = currency[position]
         parent.textViewCurrencyZl.text = currency.mid.toString()
-        parent.textViewDate.text = currency.code
+        parent.textViewshortcut.text = currency.code
         parent.textViewName.text = currency.currency
     }
 
@@ -34,6 +34,6 @@ class CurrencyAdapter(private var currency:List<Currency>):RecyclerView.Adapter<
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val textViewName:TextView = view.findViewById(R.id.currency_name)
         val textViewCurrencyZl:TextView = view.findViewById(R.id.currency_kurs)
-        val textViewDate:TextView = view.findViewById(R.id.date)
+        val textViewshortcut:TextView = view.findViewById(R.id.shortcut)
     }
 }
