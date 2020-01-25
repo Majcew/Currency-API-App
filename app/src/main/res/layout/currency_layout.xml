@@ -24,14 +24,7 @@
         android:layout_height="55dp">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.09"
-            android:text="Cena zł:"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/curency_zl"
+            android:id="@+id/currency_kurs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.18"
@@ -39,19 +32,12 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.15"
             android:text="Data:"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/currency_date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="date"
-            android:textSize="16dp" />
 
     </LinearLayout>
 

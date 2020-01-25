@@ -1,5 +1,5 @@
 package com.example.waluty.model
-
 import java.io.Serializable
 
-class Currency(val name:String, val price:Double):Serializable
+//Do poprawy
+data class Currency(val name:String, val code:String, val price:Double):Serializable

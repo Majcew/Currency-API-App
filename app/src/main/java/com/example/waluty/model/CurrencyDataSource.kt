@@ -1,7 +1,6 @@
 package com.example.waluty.model
 
 interface CurrencyDataSource {
-
-    fun retrieveCurrency()
+    fun retrieveCurrency(callback: LinkStatus)
     fun cancel()
 }
