@@ -1,15 +1,17 @@
 package com.example.waluty.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.waluty.R
 import com.example.waluty.model.Currency
-import com.example.waluty.model.CurrencyResponse
 
-class CurrencyAdapter(private var currency:List<Currency>, private var date:String):RecyclerView.Adapter<CurrencyAdapter.MyViewHolder>() {
+class CurrencyAdapter(private var currency:List<Currency>, private var date:String, val context: Context):RecyclerView.Adapter<CurrencyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.currency_layout, parent, false)
@@ -26,6 +28,16 @@ class CurrencyAdapter(private var currency:List<Currency>, private var date:Stri
         parent.textViewshortcut.text = currency.code
         parent.textViewName.text = currency.currency
         parent.textViewDate.text = date
+
+        //dodałem tworzenie nowej aktywnosci
+        parent.itemView.setOnClickListener{
+            val intent = Intent(context,checkDays::class.java)
+            intent.putExtra("zl",currency.mid.toString())
+            intent.putExtra("code",currency.code)
+            intent.putExtra("currency",currency.currency)
+            intent.putExtra("date",date)
+            ContextCompat.startActivity(context, intent, null)
+        }
     }
 
     fun update(data:List<Currency>){
@@ -35,7 +47,7 @@ class CurrencyAdapter(private var currency:List<Currency>, private var date:Stri
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val textViewName:TextView = view.findViewById(R.id.currency_name)
         val textViewCurrencyZl:TextView = view.findViewById(R.id.currency_kurs)
-        val textViewshortcut:TextView = view.findViewById(R.id.shortcut)
-        val textViewDate:TextView = view.findViewById(R.id.date)
+        val textViewshortcut:TextView = view.findViewById(R.id.shortcut_check)
+        val textViewDate:TextView = view.findViewById(R.id.date_check)
     }
 }

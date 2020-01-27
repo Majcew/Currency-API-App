@@ -1,8 +1,11 @@
 package com.example.waluty.view
 
+import android.app.Application
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +16,7 @@ import com.example.waluty.model.Inject
 import com.example.waluty.viewmodel.CurrencyViewFactory
 import com.example.waluty.viewmodel.CurrencyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.currency_layout.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI(){
-        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "20-06-1999")
+        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "20-06-1999", this!!) //jezeli jest nullem to random
         recyclerView.adapter= adapter
         recyclerView.layoutManager= LinearLayoutManager(this)
     }
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository())).get(CurrencyViewModel::class.java)
         viewModel.currency.observe(this,renderCurrencies)
 
+        //Jezeli viewmodel sie zmienic wartosc w livedata srtring typu date to wywolaj funkcje checkdate()
         viewModel.date.observe(this,checkDate)
 
     }
@@ -46,10 +51,8 @@ class MainActivity : AppCompatActivity() {
         adapter.update(it)
     }
 
+    //inicjuje recyclerview z pobranymi danymi
     private val checkDate = Observer<String> {  setupUI()}
-
-
-
 
 
     override fun onResume() {

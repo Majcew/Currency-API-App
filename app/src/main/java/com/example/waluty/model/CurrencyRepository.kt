@@ -18,6 +18,7 @@ class CurrencyRepository:CurrencyDataSource {
             override fun onResponse(call: Call<List<CurrencyResponse>>, response: Response<List<CurrencyResponse>>) {
                 response?.body()?.let {
                     if(response.isSuccessful){
+                        //callbeack obiekt nasz przesyla do view modelu
                         callback.onSuccess(it[0].rates)
                         callback.onSuccess(it[0].effectiveDate)
                     }else{
