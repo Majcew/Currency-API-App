@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI(){
-        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList())
+        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "20-06-1999")
         recyclerView.adapter= adapter
         recyclerView.layoutManager= LinearLayoutManager(this)
     }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository())).get(CurrencyViewModel::class.java)
         viewModel.currency.observe(this,renderCurrencies)
 
-        viewModel.isViewLoading.observe(this,isViewLoadingObserver)
+        viewModel.date.observe(this,checkDate)
 
     }
 
@@ -46,10 +46,7 @@ class MainActivity : AppCompatActivity() {
         adapter.update(it)
     }
 
-    private val isViewLoadingObserver= Observer<Boolean> {
-        val visibility=if(it) View.VISIBLE else View.GONE
-        //progressBar.visibility= visibility
-    }
+    private val checkDate = Observer<String> {  setupUI()}
 
 
 

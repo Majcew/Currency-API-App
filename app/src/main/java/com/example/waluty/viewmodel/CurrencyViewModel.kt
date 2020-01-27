@@ -12,6 +12,9 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
     private val _currency = MutableLiveData<List<Currency>>().apply { value = emptyList() }
     val currency:LiveData<List<Currency>> = _currency
 
+    private val _date = MutableLiveData<String>()
+    val date:LiveData<String> = _date
+
     private val _isViewLoading=MutableLiveData<Boolean>()
     val isViewLoading:LiveData<Boolean> = _isViewLoading
 
@@ -37,6 +40,10 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
                     }else{
                         _currency.value= obj as List<Currency>
                     }
+                }
+                if(obj!=null && obj is String)
+                {
+                    _date.value = obj
                 }
             }
         })

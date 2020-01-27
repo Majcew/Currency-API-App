@@ -19,6 +19,7 @@ class CurrencyRepository:CurrencyDataSource {
                 response?.body()?.let {
                     if(response.isSuccessful){
                         callback.onSuccess(it[0].rates)
+                        callback.onSuccess(it[0].effectiveDate)
                     }else{
                         callback.onError("Wystąpił błąd")
                     }
