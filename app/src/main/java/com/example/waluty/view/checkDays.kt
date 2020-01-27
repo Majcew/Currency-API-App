@@ -15,9 +15,6 @@ class checkDays : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.check_layout)
 
-        
-        setContentView(R.layout.check_layout)
-
         val intent = intent
         val mid = intent.getStringExtra("zl")
         val code = intent.getStringExtra("code")
