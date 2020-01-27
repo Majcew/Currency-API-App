@@ -13,7 +13,10 @@ class checkDays : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_check_days)
+        setContentView(R.layout.check_layout)
+
+        
+        setContentView(R.layout.check_layout)
 
         val intent = intent
         val mid = intent.getStringExtra("zl")
@@ -23,7 +26,7 @@ class checkDays : AppCompatActivity() {
 
         currency_name_check.setText(currency)
         date_check.setText(date)
-        currency_kurs.setText(mid)
+        currency_kurs_check.setText(mid)
         shortcut_check.setText(code)
     }
 }
