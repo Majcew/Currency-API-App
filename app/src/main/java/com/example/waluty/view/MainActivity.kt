@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private  fun setupViewModel(){
-        viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository())).get(CurrencyViewModel::class.java)
+        viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository(),this)).get(CurrencyViewModel::class.java)
         viewModel.currency.observe(this,renderCurrencies)
 
         //Jezeli viewmodel sie zmienic wartosc w livedata srtring typu date to wywolaj funkcje checkdate()

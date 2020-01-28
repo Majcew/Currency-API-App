@@ -1,5 +1,7 @@
 package com.example.waluty.model
 
+import android.content.Context
+import androidx.room.Room
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -8,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 object API_object {
+
     private const val API_BASE_URL = "https://api.nbp.pl/api/"
     private var servicesApiInterface:ServicesApiInterface?=null
 

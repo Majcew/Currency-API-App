@@ -1,6 +1,12 @@
 package com.example.waluty.model
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-//Do poprawy
-//poprawione na wartości z api
-data class Currency(val currency:String, val code:String, val mid:Double):Serializable
+
+data class Currency(
+    @SerializedName("currency")
+    val currency:String,
+    @SerializedName("code")
+    val code:String,
+    @SerializedName("mid")
+    val mid:Double):Serializable
