@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.waluty.R
 import com.example.waluty.model.Currency
+import com.example.waluty.model.DBHelper
 import com.example.waluty.model.Inject
 import com.example.waluty.viewmodel.CurrencyViewFactory
 import com.example.waluty.viewmodel.CurrencyViewModel
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     //zadeklarowanie adapteru do recyclerView
     private lateinit var adapter: CurrencyAdapter
     private lateinit var viewModel: CurrencyViewModel
+
+    val dbConnect = DBHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
