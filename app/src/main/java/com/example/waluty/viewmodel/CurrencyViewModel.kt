@@ -20,6 +20,8 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
 
     private val _onMessageError=MutableLiveData<Any>()
 
+    private val pomocy1:MutableList<List<Currency>> = mutableListOf()
+
     private val _isEmptyList=MutableLiveData<Boolean>()
 
     fun loadCurrencies(){
@@ -38,7 +40,8 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
                     if(obj.isEmpty()){
                         _isEmptyList.postValue(true)
                     }else{
-                        _currency.value= obj as List<Currency>
+                        _currency.value = obj as List<Currency>
+                        pomocy1?.add(obj)
                     }
                 }
                 if(obj!=null && obj is String)

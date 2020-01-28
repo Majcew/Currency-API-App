@@ -34,7 +34,7 @@ object API_object {
     }
 
     interface ServicesApiInterface{
-        @GET("exchangerates/tables/a/?format=json")
+        @GET("exchangerates/tables/a/last/5/?format=json")
         fun currencies(): Call<List<CurrencyResponse>>
     }
 }
