@@ -14,7 +14,7 @@ import com.example.waluty.model.Currency
 class CurrencyAdapter(private var currency:List<Currency>, private var date:String, val context: Context):RecyclerView.Adapter<CurrencyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.currency_layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_check, parent, false)
         return MyViewHolder(view)
     }
 
@@ -42,9 +42,9 @@ class CurrencyAdapter(private var currency:List<Currency>, private var date:Stri
         notifyDataSetChanged()
     }
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val textViewName:TextView = view.findViewById(R.id.currency_name)
-        val textViewCurrencyZl:TextView = view.findViewById(R.id.currency_kurs)
-        val textViewshortcut:TextView = view.findViewById(R.id.shortcut_check)
-        val textViewDate:TextView = view.findViewById(R.id.date_check)
+        val textViewName:TextView = view.findViewById(R.id.nameCH)
+        val textViewCurrencyZl:TextView = view.findViewById(R.id.currencyCH)
+        val textViewshortcut:TextView = view.findViewById(R.id.shortcutCH)
+        val textViewDate:TextView = view.findViewById(R.id.dateCH)
     }
 }
