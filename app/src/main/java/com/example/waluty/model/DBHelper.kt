@@ -84,7 +84,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         return currencyy
     }
 
-            fun addCurrency(currency: List<Currency>,date:String): Long {
+            fun addCurrency(currency: List<Currency>,date:String){
                 val db = this.writableDatabase
                 val value = contentValuesOf()
                 var result:Long
@@ -94,10 +94,8 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
                     value.put(COL_MID, currency[i].mid.toString())
                     value.put(COL_DATE, date)
                     result = db.insert(TABLE_NAME, null, value)
-                    currency[i].mid = result.toDouble() //zmienione val na var w zmiennej mid
                 }
                 db.close()
-                return 1
             }
 
 }

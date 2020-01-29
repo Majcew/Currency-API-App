@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity() {
 
     //inicjuje recyclerview z pobranymi danymi
     private val checkDate = Observer<String> {
+        dbConnect.addCurrency(viewModel.currency.value?: emptyList(),viewModel.date.value?:"12-12-2019")
         setupUI()
-        //dbConnect.addCurrency(viewModel.currency.value?: emptyList(),viewModel.date.value?:"12-12-2019")
     }
 
 
