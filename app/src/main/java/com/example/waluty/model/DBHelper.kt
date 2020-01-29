@@ -36,11 +36,11 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         onUpgrade(db, oldVersion, newVersion)
     }
 
-    val allCurrency: MutableList<Currency>
+    val allCurrency: MutableList<ConcreteValue>
 
         get() {
             val query = "SELECT * FROM $TABLE_NAME"
-            val currencyy = mutableListOf<Currency>()
+            val currencyy = mutableListOf<ConcreteValue>()
             val db = this.writableDatabase
             val cursor = db.rawQuery(query, null)
 
@@ -51,8 +51,8 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
                     val mid = cursor.getDouble(cursor.getColumnIndex(COL_MID))
                     val date = cursor.getString(cursor.getColumnIndex(COL_DATE))
 
-                    val currency = Currency(name, code, mid)
-                    currencyy.add(currency)
+                    val concreteValue = ConcreteValue(name, code, mid,date)
+                    currencyy.add(concreteValue)
 
                 } while (cursor.moveToNext())
 
@@ -61,14 +61,14 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
             return currencyy
         }
 
-            fun addCurrency(currency: Currency): Long {
+            fun addCurrency(currency: Currency,date:String): Long {
                 val db = this.writableDatabase
                 val value = contentValuesOf()
 
                 value.put(COL_CURRENCY, currency.currency)
                 value.put(COL_CODE, currency.code)
                 value.put(COL_MID, currency.mid.toString())
-                //value.put(COL_DATE,date)
+                value.put(COL_DATE,date)
 
 
                 val result = db.insert(TABLE_NAME, null, value)
