@@ -13,6 +13,8 @@ class FavCurrenciesViewModel(context: Context):ViewModel() {
     private val _currency = MutableLiveData<List<ConcreteValue>>().apply { value = emptyList() }
     val currency: LiveData<List<ConcreteValue>> = _currency
 
+    var changes=MutableLiveData<Boolean>()
+
     private val db = DBHelper(context)
 
     fun loadCurrencies() {
@@ -29,5 +31,10 @@ class FavCurrenciesViewModel(context: Context):ViewModel() {
     fun addToFavourite(currency: ConcreteValue)
     {
         db.addFavourite(currency)
+    }
+    fun dbRecordChanged()
+    {
+        changes.value = changes.value !=true
+
     }
 }

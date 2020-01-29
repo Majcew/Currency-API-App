@@ -41,5 +41,8 @@ class DiffNeededCurrencyAdapter(private var currency:List<ConcreteValue>,private
         currency = data
         notifyDataSetChanged()
     }
-    fun remove(code:String,date:String) = viewModel.removeFromFavourite(code,date)
+    fun remove(code:String,date:String) {
+        viewModel.removeFromFavourite(code, date)
+        viewModel.dbRecordChanged()
+    }
 }

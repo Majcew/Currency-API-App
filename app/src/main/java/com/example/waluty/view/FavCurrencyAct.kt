@@ -33,9 +33,13 @@ class FavCurrencyAct : AppCompatActivity() {
     private  fun setupViewModel(){
         viewModel = ViewModelProvider(this,FavCurrenciesFactory(this)).get(FavCurrenciesViewModel::class.java)
         viewModel.currency.observe(this,update)
+        viewModel.changes.observe(this,update2)
     }
     private val update= Observer<List<ConcreteValue>> {
         adapter.update(it)
+    }
+    private val update2= Observer<Boolean> {
+        viewModel.loadCurrencies()
     }
 
     override fun onResume() {
