@@ -84,38 +84,32 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         return currencyy
     }
 
-    fun addCurrency(currency: List<Currency>,date:String) {
+    fun addCurrency(currency: Currency,date:String) {
         val db = this.writableDatabase
 
-        if(CheckIsDataAlreadyInDBorNot(TABLE_NAME, COL_CODE, COL_DATE)){
             val value = contentValuesOf()
-            var result:Long
-            for(i in 0..currency.size-1) {
-                value.put(COL_CURRENCY, currency[i].currency)
-                value.put(COL_CODE, currency[i].code)
-                value.put(COL_MID, currency[i].mid.toString())
+                value.put(COL_CURRENCY, currency.currency)
+                value.put(COL_CODE, currency.code)
+                value.put(COL_MID, currency.mid.toString())
                 value.put(COL_DATE, date)
-                //db.insertWithOnConflict(TABLE_NAME, null, value,SQLiteDatabase.CONFLICT_REPLACE)
-                result = db.insert(TABLE_NAME, null, value)
-            }
+                db.insert(TABLE_NAME, null, value)
             db.close()
-        }
-
-
     }
 
 
-    fun CheckIsDataAlreadyInDBorNot(TableName: String, code: String, date: String): Boolean {
-
-        val db = this.writableDatabase
-        val Query = "SELECT * FROM $TABLE_NAME WHERE $COL_CODE = '$code' AND $COL_DATE = '$date'"
-        val cursor = db.rawQuery(Query, null)
-        if (cursor.getCount() <= 0) {
+    fun CheckIfDataAlreadyInDBorNot(currency: List<Currency>, date: String) {
+        for (i in 0..currency.size - 1) {
+            var code = currency[i].code
+            val db = this.writableDatabase
+            val query = "SELECT * FROM $TABLE_NAME WHERE $COL_CODE = '$code' AND $COL_DATE = '$date'"
+            val cursor = db.rawQuery(query, null)
+            if (cursor.count <= 0) {
+                cursor.close()
+                addCurrency(currency[i], date)
+            }
             cursor.close()
-            return false
         }
-        cursor.close()
-        return true
+        return
     }
 
 }
