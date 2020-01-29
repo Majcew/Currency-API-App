@@ -22,11 +22,10 @@ class checkDays : AppCompatActivity() {
         val currency = intent.getStringExtra("currency")
         val date = intent.getStringExtra("date")
         val db = DBHelper(this)
-        db.allCurrency
-        print(1)
-        currency_name_check.setText(currency)
-        date_check.setText(date)
-        currency_kurs_check.setText(mid)
-        shortcut_check.setText(code)
+        val kupa = db.neededCurrency(code)
+        currency_name_check.setText(kupa[0].name)
+        date_check.setText(kupa[0].date)
+        currency_kurs_check.setText(kupa[0].mid.toString())
+        shortcut_check.setText(kupa[0].code)
     }
 }

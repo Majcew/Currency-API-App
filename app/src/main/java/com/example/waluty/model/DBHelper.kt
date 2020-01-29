@@ -60,6 +60,29 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
             db.close()
             return currencyy
         }
+    fun neededCurrency(code:String):List<ConcreteValue>
+    {
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_CODE LIKE '$code'"
+        val currencyy = mutableListOf<ConcreteValue>()
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val name = cursor.getString(cursor.getColumnIndex(COL_CURRENCY))
+                val code = cursor.getString(cursor.getColumnIndex(COL_CODE))
+                val mid = cursor.getDouble(cursor.getColumnIndex(COL_MID))
+                val date = cursor.getString(cursor.getColumnIndex(COL_DATE))
+
+                val concreteValue = ConcreteValue(name, code, mid,date)
+                currencyy.add(concreteValue)
+
+            } while (cursor.moveToNext())
+
+        }
+        db.close()
+        return currencyy
+    }
 
             fun addCurrency(currency: List<Currency>,date:String): Long {
                 val db = this.writableDatabase
