@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CurrencyRepository:CurrencyDataSource {
+class CurrencyRepository():CurrencyDataSource {
 
     private var call:Call<List<CurrencyResponse>>?=null
 

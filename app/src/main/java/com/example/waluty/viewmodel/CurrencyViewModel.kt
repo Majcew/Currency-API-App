@@ -1,13 +1,15 @@
 package com.example.waluty.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.waluty.model.Currency
 import com.example.waluty.model.CurrencyDataSource
+import com.example.waluty.model.DBHelper
 import com.example.waluty.model.LinkStatus
 
-class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() {
+class CurrencyViewModel(private val repository: CurrencyDataSource,context:Context):ViewModel() {
 
     private val _currency = MutableLiveData<List<Currency>>().apply { value = emptyList() }
     val currency:LiveData<List<Currency>> = _currency
@@ -21,6 +23,8 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
     private val _onMessageError=MutableLiveData<Any>()
 
     private val pomocy1:MutableList<List<Currency>> = mutableListOf()
+
+    private val db = DBHelper(context)
 
     private val _isEmptyList=MutableLiveData<Boolean>()
 
@@ -47,6 +51,7 @@ class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() 
                 if(obj!=null && obj is String)
                 {
                     _date.value = obj
+                    db.addCurrency(_currency.value!!,_date.value!!)
                 }
             }
         })

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.waluty.R
+import com.example.waluty.model.DBHelper
 import kotlinx.android.synthetic.main.check_layout.*
 import kotlinx.android.synthetic.main.check_layout.date_check
 import kotlinx.android.synthetic.main.check_layout.shortcut_check
@@ -20,7 +21,9 @@ class checkDays : AppCompatActivity() {
         val code = intent.getStringExtra("code")
         val currency = intent.getStringExtra("currency")
         val date = intent.getStringExtra("date")
-
+        val db = DBHelper(this)
+        db.allCurrency
+        print(1)
         currency_name_check.setText(currency)
         date_check.setText(date)
         currency_kurs_check.setText(mid)

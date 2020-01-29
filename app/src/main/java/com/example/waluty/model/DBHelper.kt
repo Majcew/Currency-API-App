@@ -23,7 +23,7 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
                     "$COL_CURRENCY TEXT NOT NULL, " +
                     "$COL_CODE TEXT NOT NULL, " +
                     "$COL_MID DOUBLE NOT NULL, " +
-                    "$COL_DATE TEXT NOT NULL, )"
+                    "$COL_DATE TEXT NOT NULL)"
         )
     }
 
@@ -61,19 +61,19 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
             return currencyy
         }
 
-            fun addCurrency(currency: Currency,date:String): Long {
+            fun addCurrency(currency: List<Currency>,date:String): Long {
                 val db = this.writableDatabase
                 val value = contentValuesOf()
 
-                value.put(COL_CURRENCY, currency.currency)
-                value.put(COL_CODE, currency.code)
-                value.put(COL_MID, currency.mid.toString())
+                value.put(COL_CURRENCY, currency[0].currency)
+                value.put(COL_CODE, currency[0].code)
+                value.put(COL_MID, currency[0].mid.toString())
                 value.put(COL_DATE,date)
 
 
                 val result = db.insert(TABLE_NAME, null, value)
 
-                currency.mid = result.toDouble() //zmienione val na var w zmiennej mid
+                currency[0].mid = result.toDouble() //zmienione val na var w zmiennej mid
 
                 db.close()
 
