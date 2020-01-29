@@ -1,7 +1,5 @@
 package com.example.waluty.model
 
-import android.content.Context
-import androidx.room.Room
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call

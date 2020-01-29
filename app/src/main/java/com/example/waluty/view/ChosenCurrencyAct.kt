@@ -30,10 +30,6 @@ class ChosenCurrencyAct : AppCompatActivity() {
         val intent = intent
         code = intent.getStringExtra("code")
 
-        adapter = NeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel) //jezeli jest nullem to random
-        recyclerViewCheck.adapter= adapter
-        recyclerViewCheck.layoutManager= LinearLayoutManager(this)
-
     }
     private fun setupUI(){
         adapter = NeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel) //jezeli jest nullem to random
