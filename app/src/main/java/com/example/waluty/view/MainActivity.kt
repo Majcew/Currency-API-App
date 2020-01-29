@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     //zadeklarowanie adapteru do recyclerView
     private lateinit var adapter: CurrencyAdapter
     private lateinit var viewModel: CurrencyViewModel
-
     val dbConnect = DBHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +54,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     //inicjuje recyclerview z pobranymi danymi
-    private val checkDate = Observer<String> {  setupUI()}
+    private val checkDate = Observer<String> {
+        setupUI()
+        dbConnect.addCurrency(viewModel.currency.value?: emptyList(),viewModel.date.value?:"12-12-2019")
+    }
 
 
     override fun onResume() {

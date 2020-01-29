@@ -22,10 +22,6 @@ class CurrencyViewModel(private val repository: CurrencyDataSource,context:Conte
 
     private val _onMessageError=MutableLiveData<Any>()
 
-    private val pomocy1:MutableList<List<Currency>> = mutableListOf()
-
-    private val db = DBHelper(context)
-
     private val _isEmptyList=MutableLiveData<Boolean>()
 
     fun loadCurrencies(){
@@ -45,13 +41,11 @@ class CurrencyViewModel(private val repository: CurrencyDataSource,context:Conte
                         _isEmptyList.postValue(true)
                     }else{
                         _currency.value = obj as List<Currency>
-                        pomocy1?.add(obj)
                     }
                 }
                 if(obj!=null && obj is String)
                 {
                     _date.value = obj
-                    db.addCurrency(_currency.value!!,_date.value!!)
                 }
             }
         })
