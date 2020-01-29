@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_check_days.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FavCurrencyAct : AppCompatActivity() {
-    private lateinit var adapter : NeededCurrencyAdapter
+    private lateinit var adapter : DiffNeededCurrencyAdapter
     private lateinit var viewModel: FavCurrenciesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class FavCurrencyAct : AppCompatActivity() {
 
     }
     private fun setupUI(){
-        adapter = NeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel) //jezeli jest nullem to random
+        adapter = DiffNeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel) //jezeli jest nullem to random
         recyclerViewCheck.adapter= adapter
         recyclerViewCheck.layoutManager= LinearLayoutManager(this)
     }
