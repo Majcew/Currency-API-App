@@ -30,10 +30,4 @@ class CurrencyRepository:CurrencyDataSource {
             }
         })
     }
-
-    override fun cancel() {
-        call?.let {
-            it.cancel()
-        }
-    }
 }

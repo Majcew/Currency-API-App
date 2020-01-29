@@ -31,11 +31,8 @@ class CurrencyAdapter(private var currency:List<Currency>, private var date:Stri
 
         //dodałem tworzenie nowej aktywnosci
         parent.itemView.setOnClickListener{
-            val intent = Intent(context,checkDays::class.java)
-            intent.putExtra("zl",currency.mid.toString())
+            val intent = Intent(context,ChosenCurrencyAct::class.java)
             intent.putExtra("code",currency.code)
-            intent.putExtra("currency",currency.currency)
-            intent.putExtra("date",date)
             ContextCompat.startActivity(context, intent, null)
         }
     }

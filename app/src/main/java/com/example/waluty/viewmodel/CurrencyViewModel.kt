@@ -7,7 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.example.waluty.model.*
 
+<<<<<<< Updated upstream
 class CurrencyViewModel(private val repository: CurrencyDataSource, context: Context):ViewModel() {
+=======
+class CurrencyViewModel(private val repository: CurrencyDataSource):ViewModel() {
+>>>>>>> Stashed changes
 
     private val _currency = MutableLiveData<List<Currency>>().apply { value = emptyList() }
     val currency:LiveData<List<Currency>> = _currency
@@ -16,7 +20,6 @@ class CurrencyViewModel(private val repository: CurrencyDataSource, context: Con
     val date:LiveData<String> = _date
 
     private val _isViewLoading=MutableLiveData<Boolean>()
-    val isViewLoading:LiveData<Boolean> = _isViewLoading
 
     val db = Room.databaseBuilder(
         context,

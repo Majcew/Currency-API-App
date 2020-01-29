@@ -1,12 +1,11 @@
 package com.example.waluty.view
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +15,6 @@ import com.example.waluty.model.Inject
 import com.example.waluty.viewmodel.CurrencyViewFactory
 import com.example.waluty.viewmodel.CurrencyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.currency_layout.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +29,23 @@ class MainActivity : AppCompatActivity() {
         setupViewModel()
         setupUI()
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.favourite-> OpenFavActivity()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun OpenFavActivity() {
+        val intent = Intent(this,FavCurrencyAct::class.java)
+        ContextCompat.startActivity(this, intent, null)
+    }
 
     private fun setupUI(){
         adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "20-06-1999", this!!) //jezeli jest nullem to random
@@ -39,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private  fun setupViewModel(){
-        viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository(),this)).get(CurrencyViewModel::class.java)
+        viewModel = ViewModelProvider(this,CurrencyViewFactory(Inject.providerRepository())).get(CurrencyViewModel::class.java)
         viewModel.currency.observe(this,renderCurrencies)
 
         //Jezeli viewmodel sie zmienic wartosc w livedata srtring typu date to wywolaj funkcje checkdate()
