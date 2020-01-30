@@ -161,5 +161,18 @@ class DBHelper(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 
         }
         return
     }
+    fun CheckIfFavIsAlreadyInDB(currency:ConcreteValue) {
+            var code = currency.code
+            var date:String = currency.date
+            val db = this.writableDatabase
+            val query = "SELECT * FROM $TABLE_NAME2 WHERE $COL_CODE = '$code' AND $COL_DATE = '$date'"
+            val cursor = db.rawQuery(query, null)
+            if (cursor.count <= 0) {
+                cursor.close()
+                addFavourite(currency)
+            }
+            cursor.close()
+            return
+    }
 
 }

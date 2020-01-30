@@ -1,6 +1,8 @@
 package com.example.waluty.view
 
+import android.R.attr.data
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +12,7 @@ import com.example.waluty.model.ConcreteValue
 import com.example.waluty.viewmodel.FavCurrenciesFactory
 import com.example.waluty.viewmodel.FavCurrenciesViewModel
 import kotlinx.android.synthetic.main.activity_check_days.*
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class FavCurrencyAct : AppCompatActivity() {
     private lateinit var adapter : DiffNeededCurrencyAdapter

@@ -34,12 +34,12 @@ class NeededCurrencyAdapter(private var currency:List<ConcreteValue>,private var
         parent.textViewName.text = currency.name
         parent.textViewDate.text = currency.date
         parent.button.setOnClickListener {
-            remove(currency)
+            add(currency)
         }
     }
     fun update(data:List<ConcreteValue>){
         currency = data
         notifyDataSetChanged()
     }
-    fun remove(code:ConcreteValue) = viewModel.addToFavourite(code)
+    fun add(code:ConcreteValue) = viewModel.addToFavourite(code)
 }

@@ -32,7 +32,7 @@ class ChosenCurrencyAct : AppCompatActivity() {
 
     }
     private fun setupUI(){
-        adapter = NeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel) //jezeli jest nullem to random
+        adapter = NeededCurrencyAdapter(viewModel.currency.value?: emptyList(),viewModel)
         recyclerViewCheck.adapter= adapter
         recyclerViewCheck.layoutManager= LinearLayoutManager(this)
     }

@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI(){
-        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "20-06-1999", this!!) //jezeli jest nullem to random
+        adapter = CurrencyAdapter(viewModel.currency.value?: emptyList(), viewModel.date.value?: "2020-01-01", this) //jezeli jest nullem to random
         recyclerView.adapter= adapter
         recyclerView.layoutManager= LinearLayoutManager(this)
     }

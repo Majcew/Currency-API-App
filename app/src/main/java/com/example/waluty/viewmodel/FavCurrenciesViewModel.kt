@@ -30,7 +30,7 @@ class FavCurrenciesViewModel(context: Context):ViewModel() {
     }
     fun addToFavourite(currency: ConcreteValue)
     {
-        db.addFavourite(currency)
+        db.CheckIfFavIsAlreadyInDB(currency)
     }
     fun dbRecordChanged()
     {
